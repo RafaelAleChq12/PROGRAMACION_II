@@ -1,11 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
 package PRACTICA_2;
 
 import java.util.Scanner;
-
+import javax.swing.*;
+import java.awt.*;
 
 public class PRACTICA_2_LINEA {
 
@@ -13,7 +10,6 @@ public class PRACTICA_2_LINEA {
         public float x;
         public float y;
 
-        // Constructor
         public Punto(float x, float y) {
             this.x = x;
             this.y = y;
@@ -39,6 +35,24 @@ public class PRACTICA_2_LINEA {
 
         public void dibujaLinea() {
             System.out.println("Dibujando línea: " + this);
+            
+            // Crear y mostrar la ventana gráfica para dibujar la línea
+            JFrame frame = new JFrame("Línea");
+            frame.setSize(400, 400);
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            
+            JPanel panel = new JPanel() {
+                @Override
+                protected void paintComponent(Graphics g) {
+                    super.paintComponent(g);
+                    g.setColor(Color.RED);
+                    // Dibujar la línea entre los puntos p1 y p2
+                    g.drawLine((int)p1.x, (int)p1.y, (int)p2.x, (int)p2.y);
+                }
+            };
+            
+            frame.add(panel);
+            frame.setVisible(true);
         }
     }
 
@@ -62,5 +76,4 @@ public class PRACTICA_2_LINEA {
         System.out.println(linea.toString());
         linea.dibujaLinea();
     }
-    
 }
