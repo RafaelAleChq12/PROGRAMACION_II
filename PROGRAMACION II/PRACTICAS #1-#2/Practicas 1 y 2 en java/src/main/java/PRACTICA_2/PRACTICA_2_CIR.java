@@ -1,19 +1,15 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
 package PRACTICA_2;
 
 import java.util.Scanner;
-
+import javax.swing.*;
+import java.awt.*;
 
 public class PRACTICA_2_CIR {
 
-     public static class Punto {
+    public static class Punto {
         public float x;
         public float y;
 
-        // Constructor
         public Punto(float x, float y) {
             this.x = x;
             this.y = y;
@@ -28,7 +24,6 @@ public class PRACTICA_2_CIR {
         public Punto centro;
         public float radio;
 
-        // Constructor
         public Circulo(Punto c, float r) {
             this.centro = c;
             this.radio = r;
@@ -36,11 +31,28 @@ public class PRACTICA_2_CIR {
 
         public String toString() {
             return "Círculo con centro en " + centro + " y radio " + radio;
-            
         }
 
         public void dibujaCirculo() {
             System.out.println("Dibujando círculo: " + this);
+            
+            // Crear y mostrar la ventana gráfica para dibujar el círculo
+            JFrame frame = new JFrame("Círculo");
+            frame.setSize(400, 400);
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            
+            JPanel panel = new JPanel() {
+                @Override
+                protected void paintComponent(Graphics g) {
+                    super.paintComponent(g);
+                    g.setColor(Color.BLUE);
+                    // Dibujar el círculo
+                    g.drawOval((int)(centro.x - radio), (int)(centro.y - radio), (int)(2 * radio), (int)(2 * radio));
+                }
+            };
+            
+            frame.add(panel);
+            frame.setVisible(true);
         }
     }
 
@@ -61,5 +73,4 @@ public class PRACTICA_2_CIR {
         System.out.println(circulo.toString());
         circulo.dibujaCirculo();
     }
-    
 }
