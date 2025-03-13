@@ -1,3 +1,5 @@
+import matplotlib.pyplot as plt
+
 class Punto:
     def __init__(self, x, y):
         self.x = x
@@ -16,6 +18,12 @@ class Linea:
 
     def dibuja_linea(self):
         print(f'Dibujando línea: {self}')
+        plt.plot([self.p1.x, self.p2.x], [self.p1.y, self.p2.y], marker='o', color='b')
+        plt.xlim(min(self.p1.x, self.p2.x) - 1, max(self.p1.x, self.p2.x) + 1)
+        plt.ylim(min(self.p1.y, self.p2.y) - 1, max(self.p1.y, self.p2.y) + 1)
+        plt.grid(True)
+        plt.title(f'Línea desde {self.p1} hasta {self.p2}')
+        plt.show()
 
 if __name__ == "__main__":
     x1 = float(input("Ingresa la coordenada x1: "))
